@@ -1,11 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ToDo Application</title>
-</head>
-<body>
-<h1>Welcome to ToDo Application</h1>
-</body>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css} " />
+    </head>
+    <body>
+
+        <div class="container">
+            <h1 class="text-center">Todo List</h1>
+            <hr />
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Actions</th>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Complete</th>
+                    <th>Created Date</th>
+                    <th>Modified Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${todoItem}" th:class="${item.complete} ? bg-success : bg-warning">
+                    <td>
+                        <div class="btn btn-group-sm" role="group">
+                            <a class="btn btn-info" th:href="@{/edit/{id}(id=${item.id})}">Edit</a>
+                            <a class="btn btn-danger" th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+                        </div>
+                    </td>
+                    <td th:text="${item.id}">item_id</td>
+                    <td th:text="${item.noteDesc}">item_noteDesc</td>
+                    <td th:text="${item.complete}">item_complete</td>
+                    <td th:text="${item.createTime}">item_create_time</td>
+                    <td th:text="${item.updateTime}">item_update_time</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p><a class="btn btn-success" href="/create-todo">Add a Todo!</a></p>
+        </div>
+
+
+        <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+
+    </body>
+
 </html>

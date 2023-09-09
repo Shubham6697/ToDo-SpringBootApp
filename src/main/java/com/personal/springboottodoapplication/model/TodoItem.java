@@ -1,9 +1,8 @@
-package com.personal.springboottodoapplication.entities;
+package com.personal.springboottodoapplication.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.logging.log4j.CloseableThreadContext;
 
 import java.time.Instant;
 
